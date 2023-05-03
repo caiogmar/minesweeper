@@ -87,6 +87,7 @@ function revealCell(row, col) {
 
   // If the cell played is a mine, player loses
   if (board[row][col] === "*") {
+    revealMines();
     displayBoard();
     playerLoses();
   }
@@ -172,6 +173,15 @@ function playerWins() {
   console.log("| WHOO-HOO, YOU WIN! |");
   console.log(" --------------------");
   rl.close();
+}
+
+function revealMines() {
+  for (var i = 0; i < mines.length; i++) {
+    var mine = mines[i];
+    if (fog[mine[0]][mine[1]] === 0) {
+      fog[mine[0]][mine[1]] = 1;
+    }
+  }
 }
 
 /**
